@@ -1,0 +1,95 @@
+body {
+  margin: 0;
+}
+
+.nav {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 8vh;
+  background-color: pink;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.toDoTitle {
+  color: white;
+  padding-left: 5%;
+
+}
+.main{
+  display: flex;
+}
+
+.directoryDiv {
+  display: flex;
+  flex-direction: column;
+  width: 20vw;
+  height: 92vh;
+  background-color: blue;
+  align-items: center;
+
+}
+
+.contentTaskDiv {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 92vh;
+  background-color: green;
+}
+
+.projectNames {
+  background-color: pink;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.newProject{
+  margin: 2% 0;
+}
+
+.projectButton {
+  width: 50px;
+  height: 50px;
+}
+
+
+.addProjectDiv{
+  display: none;
+  position: fixed;
+  left: 15%;
+  width: 20vw;
+  z-index: 1;
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0,0.4);
+
+
+}
+.projectContent{
+  display: flex;
+  flex-direction: column;
+  margin: 15% auto;
+  justify-content: center;
+
+
+}
+.projectSubmit {
+  width:5vw;
+  height:5vh;
+  align-self: center;
+
+}
+
+.closeButton {
+  color: #aaa;
+
+}
+.closeButton:hover,
+.closeButton:focus {
+  color: black;
+  cursor: pointer;
+}
