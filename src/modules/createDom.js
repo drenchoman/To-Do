@@ -50,6 +50,7 @@
     contentTaskDiv.classList.add("contentTaskDiv")
 
     main.appendChild(contentTaskDiv);
+
     content.appendChild(main);
   };
 

@@ -1,6 +1,3 @@
-
-
-
 let createProject = (name) => {
   const newProject = document.createElement("div");
   newProject.classList.add("newProject");
@@ -9,42 +6,70 @@ let createProject = (name) => {
   projectTitle.textContent = name;
 
   const projectList = document.querySelector(".projectNames")
-
+  name = [];
   newProject.appendChild(projectTitle);
   projectList.appendChild(newProject);
 
-  return projectList
+  // return projectList
 
 };
 
 let addEtoAdd = () => {
   // let button = document.querySelector(".projectSubmit")
   let input = document.querySelector(".projectInput")
-  document.body.addEventListener("click", function(e){
-    if(e.target.className === "projectSubmit"){
-      createProject(input.value)
+  document.body.addEventListener("click", function(e) {
+    if (e.target.className === "projectSubmit") {
+      createProject(input.value);
       addEtoProjects();
+      let pop = document.querySelector(".addProjectDiv");
+      pop.style.display = "none";
     }
   })
 };
 
 // TESTING ADD EVENT LISTNER TO NEW DOM ELEMENTS
+let setActiveTask = (e) => {
+  const activeBtn = document.querySelector(".active");
+  if (activeBtn) {
+    activeBtn.classList.remove("active");
+  } else {
+    e.target.classList.add("active")
+  }
+};
+
+
+
+let populateTaskDiv = (e) => {
+  const taskHeader = document.querySelector(".taskHeader");
+  const header = e.target.textContent
+  taskHeader.textContent = header;
+}
+
 let addEtoProjects = () => {
   let projects = document.querySelectorAll(".newProject")
-  projects.onclick = console.log(event.type + "!")
-  // document.body.addEventListener("click", function(e){
-  //   if(e.target.className === "projectTitle"){
-  //     console.log(project.textContent);
-  //
-  //   }
-  // })
+  document.body.addEventListener("click", function(e) {
+    if (e.target.className === "projectTitle") {
+      setActiveTask(e);
+      console.log(e.target.textContent);
+      populateTaskDiv(e);
+    }
+  })
 
+};
+
+let closePopUp = () => {
+  document.body.addEventListener("click", function(e){
+    if (e.target.className === "closeButton"){
+      let pop = document.querySelector(".addProjectDiv");
+      pop.style.display = "none";
+    }
+  })
 };
 
 
 let addProjectName = () => {
   let x = document.querySelector(".addProjectDiv")
-  if (x){
+  if (x) {
     x.style.display = "block"
   } else {
     let addProjectDiv = document.createElement("div");
@@ -63,11 +88,9 @@ let addProjectName = () => {
     projectSubmit.textContent = "Add"
 
 
-// Create own function for this?
+    // Create own function for this?
     addProjectDiv.style.display = "block"
-    closeButton.addEventListener("click", function(){
-      addProjectDiv.style.display = "none";
-    })
+    closePopUp();
 
 
     projectContent.appendChild(closeButton);
@@ -76,7 +99,7 @@ let addProjectName = () => {
 
     addProjectDiv.appendChild(projectContent);
     directoryDiv.appendChild(addProjectDiv);
-    console.log("test")
+
     addEtoAdd();
   }
 
