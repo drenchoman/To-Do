@@ -1,13 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Karla&family=Roboto+Slab:wght@300;400&display=swap');
 body {
   margin: 0;
+  background:#6930c3;
 }
 
+h2 {
+  font-family: 'Roboto Slab', serif;
+  font-size: 3em;
+}
+
+h3 {
+  font-family: 'Karla', sans-serif;
+
+}
+
+p {
+  font-family: 'Roboto Slab', serif;
+  font-size: 1em;
+}
 .nav {
   display: flex;
   flex-direction: row;
   width: 100%;
   height: 8vh;
-  background-color: pink;
+  background-color: #252525;
   align-items: center;
   justify-content: space-between;
 }
@@ -24,41 +40,57 @@ body {
 .directoryDiv {
   display: flex;
   flex-direction: column;
-  width: 20vw;
-  height: 92vh;
-  background-color: blue;
+  width: 20%;
+  height: 100vh;
+  background: #64dfdf;
+  /* border: 1px solid #80ffdb;
+  border-radius: 30px 30px 0 0; */
+  /* background: rgba(37, 37, 37, 0.6); */
   align-items: center;
 
 }
 
 
 
+
 .projectNames {
-  background-color: pink;
+  /* background: rgba(255, 87, 127, 0.5); */
   width: 100%;
+  margin-top: 2%;
+  margin-bottom: 2%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
+.active {
+  background: rgba(255, 87, 127, 1)
+}
+
+/* .projectNames:hover{
+  background: rgba(255, 87, 127, 1);
+} */
+
+.projectTitle {
+  width: 80%;
+  height: 10vh;
+  font-size: 1.5em;
+}
 
 .newProject {
   margin: 2% 0;
+  width: 100%;
+  height: 100%;
+  text-align: center;
 }
-
-.projectButton {
-  width: 50px;
-  height: 50px;
-}
-
 
 .addProjectDiv {
   display: none;
   position: fixed;
-  left: 15%;
-  width: 20vw;
+  left: 16.7%;
+  width: 30vw;
   z-index: 1;
-  background-color: rgb(0,0,0);
+  background-color: #ff577f;
 
 }
 
@@ -66,9 +98,18 @@ body {
   display: flex;
   flex-direction: column;
   margin: 15% auto;
-  justify-content: center;
+  justify-content: space-between;
+  align-items: center;
 
 }
+
+.projectInput{
+  margin-bottom: 5%;
+  font-size: 25px;
+  width: 50%;
+}
+
+
 
 .projectSubmit {
   width:5vw;
@@ -77,8 +118,18 @@ body {
 
 }
 
+.projectHeader{
+  font-family: 'Roboto Slab', serif;
+  font-size: 2em;
+
+}
+
 .closeButton {
   color: #aaa;
+  align-self: flex-start;
+  position: fixed;
+  top: 10%;
+  left: 18%;
 
 }
 
@@ -94,7 +145,8 @@ body {
   flex-direction: column;
   width: 100%;
   height: 92vh;
-  background-color: green;
+  background: rgba(105, 48, 195, 0.6);
+  border-radius: 50px 0 0 0;
 }
 
 .taskHeaderDiv {
@@ -102,23 +154,37 @@ body {
   flex-direction: row;
   width: 100%;
   height: 10vh;
-  background-color: teal;
+  background-color: #64dfdf;
   justify-content: center;
   align-items: center;
 }
 
 .taskHeader {
-  font-size: 3em;
+  margin-right: 2%;
 
 }
+.addButton{
+width: 100px;
+height: 30px;
+border: 1px solid #252525;
+text-align: center;
+background-color: #64dfdf;
+font-family: 'Karla', sans-serif;
+font-weight: bold;
+}
 
+
+.addTaskButton{
+  margin-top: 10px;
+}
+
+.addButton:hover,
+.addButton:focus{
+  background-color: #252525;
+  cursor: pointer;
+  color: white;
+}
 /* .taskDiv{}; */
-
-.addTaskButton {
-  width: 10vh;
-  height: 10vh;
-  margin-left: 2%;
-}
 
 
 /* Task Creator Pop up list */
@@ -144,12 +210,23 @@ body {
   justify-content: center;
   align-items: center;
   background-color: #fefefe;
-  width: 75%;
+  width: 25%;
   margin: 4% auto;
-
+}
+.taskContent > P {
+  left: 38.5%;
+  top: 8%;
 }
 
-.headerTask{}
+.taskContent > h3 {
+  font-family:'Karla', sans-serif;
+  font-size: 2.2em;
+  margin: 2.5% 0;
+
+}
+.headerTask{
+  margin: 10px 0;
+}
 
 .titleInput{}
 
@@ -187,9 +264,8 @@ body {
 
 
 .submit{
-  width: 5vh;
-  height: 2.5vw;
-  text-align: center;
+  margin-top: 5%;
+  margin-bottom: 5%;
 }
 
 
@@ -199,6 +275,21 @@ body {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  width: 90%;
+  margin: 2% auto;
+  align-items: center;
+  border: 1px solid black;
+  width: 80%;
   height: 10%;
 }
+
+
+
+
+/* WARNIN */
+/* .warningDiv{
+  display: none;
+  position: fixed;
+  width: 30vw;
+  z-index: 1;
+  background-color: #ff577f;
+} */

@@ -1,17 +1,22 @@
 
   const addNavBar = () => {
-    let navBar = document.createElement("div")
+    let taskHeaderDiv = document.createElement("div")
     let content = document.querySelector("#content")
-    navBar.classList.add("nav");
+    taskHeaderDiv.classList.add("taskHeaderDiv");
 
-    let toDo = document.createElement("p");
-    toDo.classList.add("toDoTitle")
-    toDo.textContent = "To Do"
+    const taskHeader = document.createElement("h2")
+    taskHeader.classList.add("taskHeader");
+    const addTaskButton = document.createElement("button");
+    addTaskButton.classList.add("addButton", "addTaskButton");
+
+    taskHeader.textContent = "Tasks";
+    addTaskButton.textContent = "Add Task";
 
 
 
-    navBar.appendChild(toDo)
-    content.appendChild(navBar);
+    taskHeaderDiv.appendChild(taskHeader);
+    taskHeaderDiv.appendChild(addTaskButton)
+    content.appendChild(taskHeaderDiv);
 
   };
 
@@ -22,20 +27,21 @@
     main.classList.add("main")
     let content = document.querySelector("#content");
 
-    let projectTitle = document.createElement("h1")
+    let projectTitle = document.createElement("h2")
     projectTitle.classList.add("projectHeader")
     projectTitle.textContent = "Projects"
 
     // test button
     let button = document.createElement("button");
-    button.textContent = "Add project"
-    button.classList.add("projectButton");
+    button.textContent = "Add Project"
+    button.classList.add("addButton", "projectButton");
 
     let projectNames = document.createElement("div");
     projectNames.classList.add("projectNames")
 
-    directoryDiv.appendChild(button);
+
     directoryDiv.appendChild(projectTitle);
+    directoryDiv.appendChild(button);
     directoryDiv.appendChild(projectNames);
     main.appendChild(directoryDiv)
     content.appendChild(main);
