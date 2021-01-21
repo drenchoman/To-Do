@@ -18,22 +18,88 @@ const gatherTaskData = () => {
   let description = document.querySelector(".descriptionInput");
   let date = document.querySelector(".dateInput");
   let category = document.querySelector(".taskHeader");
-  // let categoryData = category.textContent;
+  let categoryData = category.textContent;
   let titleData = title.value;
   let descriptionData = description.value;
   let dateData = date.value
   let newTask = saveTaskData(titleData, descriptionData, dateData)
-  allProjects[0].tasks.push(newTask);
-  console.log(allProjects)
-  // createTask(titleData, descriptionData, dateData);
+  let project = searchArray(allProjects, categoryData);
+
+  allProjects[project].tasks.push(newTask);
+  clearTasks();
+  pushTasksToBoard();
+  checkItems();
+  remove();
+  // console.log(allProjects[project].tasks)
+  // console.log(allProjects)
+
 }
+
+let searchArray = (allProjects, category) => {
+let result = allProjects.findIndex(x => x.projectName === category);
+return result
+}
+
+const pushTasksToBoard = () => {
+  const project = document.querySelector(".taskHeader");
+  const projectName = project.textContent;
+  const currentProject = searchArray(allProjects, projectName);
+  const allTasks = allProjects[currentProject].tasks
+
+  allTasks.forEach((task, i) => {
+    task.id = i + 1;
+  });
+
+  allTasks.forEach((task, i) =>{
+    let taskData = task.data
+    let taskDescription = task.description;
+    let taskDate = task.date;
+    let taskId = task.id;
+    createTask(taskData, taskDescription, taskDate, taskId,)
+    console.log(allProjects[currentProject].tasks)
+  } )
+};
+
+const pushAllTasks = () => {
+  clearTasks();
+  pushTasksToBoard();
+  remove();
+};
+
+
+
+const searchTask = (array, item) => {
+  let result = array.findIndex(x => x.id === Number(item));
+  return result
+};
+
+const removeTask = (item) => {
+  const project = document.querySelector(".taskHeader")
+  const projectName = project.textContent;
+  const currentProject = searchArray(allProjects, projectName);
+  const allTasks = allProjects[currentProject].tasks;
+  const taskId = item;
+  const task = searchTask(allTasks, taskId)
+  const newArray = spliceTask(task);
+  return newArray;
+
+}
+const spliceTask = (task) => {
+  const project = document.querySelector(".taskHeader")
+  const projectName = project.textContent;
+  const currentProject = searchArray(allProjects, projectName);
+  const allTasks = allProjects[currentProject].tasks;
+  const newArray = allTasks.splice(task, 1);
+  return newArray;
+}
+
 
 
 const saveTaskData = (data, description, date) => {
   let task = {
     data: data,
     description: description,
-    date: date
+    date: date,
   }
   return task
 };
@@ -57,6 +123,35 @@ let removeInputFocus = () => {
     })
   })
 };
+
+const remove = () => {
+  let bin = document.querySelectorAll(".bin")
+  bin.forEach(x => {
+    x.addEventListener("click", event => {
+      let item = event.target.id
+      let newArray = removeTask(item);
+      pushAllTasks();
+    })
+  })
+
+}
+
+
+const checkItems = () => {
+  let checkBox = document.querySelectorAll(".checkBox");
+  checkBox.forEach(check => {
+    check.addEventListener("click", event => {
+      let item = event.target.nextSibling
+      console.log(item.textContent)
+      if(item.style.textDecoration === "line-through"){
+        item.style.textDecoration = "none"
+      } else {
+        item.style.textDecoration = "line-through"
+      }
+    })
+  })
+}
+
 
 const checkProjectExists = () => {
   let active = document.querySelector(".active");
@@ -149,34 +244,50 @@ if (checkProjectExists() === true) {
 //
 // }
 
-const createTask = (title, description, dueDate) => {
+const clearTasks = () => {
+  let taskDiv = document.querySelector(".contentTaskDiv");
+  taskDiv.textContent = ""
+}
+
+
+
+const createTask = (title, description, dueDate, iD) => {
   let taskDiv = document.querySelector(".contentTaskDiv");
   let newTask = document.createElement("div");
-  newTask.classList.add("newTask");
   let taskTitle = document.createElement("h3");
-  taskTitle.classList.add("taskTitle");
-  taskTitle.textContent = title;
   let taskDate = document.createElement("P");
-  taskDate.classList.add("taskDate");
-  taskDate.textContent = dueDate;
+  let checkBox = document.createElement("input");
+  let bin = document.createElement("P");
 
+
+  checkBox.setAttribute("type", "checkBox");
+  checkBox.classList.add("checkBox");
+  newTask.classList.add("newTask");
+  taskTitle.classList.add("taskTitle");
+  taskDate.classList.add("taskDate");
+  bin.classList.add("bin")
+  bin.id = iD
+
+  taskTitle.textContent = title;
+  taskDate.textContent = dueDate;
+  bin.textContent = "X"
+
+  newTask.appendChild(checkBox);
   newTask.appendChild(taskTitle);
   newTask.appendChild(taskDate);
+  newTask.appendChild(bin);
   taskDiv.appendChild(newTask);
 
-  let tasks = [];
-  let task = saveTaskData(title, description, dueDate);
-  tasks.push(task);
-  console.log(tasks)
+  // return taskDiv
 };
 
-
-
-  // return taskDiv
 
 
 
 export {
   // buildTaskList,
   addTaskPopUp,
+  clearTasks,
+  pushAllTasks,
+  checkItems,
 }

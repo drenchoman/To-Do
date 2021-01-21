@@ -1,3 +1,5 @@
+import {clearTasks, pushAllTasks, checkItems,} from "./taskCreator.js"
+
 let allProjects = [];
 
 let createProject = (name) => {
@@ -13,6 +15,7 @@ let createProject = (name) => {
   projectList.appendChild(newProject);
   setActiveOnInit(projectTitle);
   changeTaskHeader();
+
 };
 
 let createArray = (n) => {
@@ -32,6 +35,7 @@ let addEtoAdd = () => {
       let newArray = createArray(input.value);
       allProjects.push(newArray);
       addEtoProjects();
+      clearTasks();
       let pop = document.querySelector(".addProjectDiv");
       pop.style.display = "none";
       console.log(allProjects)
@@ -78,6 +82,8 @@ let addEtoProjects = () => {
       setActiveTask(e);
       console.log(e.target.textContent);
       updateTaskHeader(e);
+      pushAllTasks();
+      checkItems();
     }
   })
 
