@@ -1,4 +1,6 @@
-import {allProjects} from "./projectCreator.js"
+import {allProjects} from "./projectCreator.js";
+import { differenceInCalendarDays } from 'date-fns'
+import { parseISO } from 'date-fns'
 
 let tasks = []
 
@@ -6,12 +8,19 @@ let addEtoAdd = () => {
   document.body.addEventListener("click", function(e) {
     if (e.target.className === "submit addButton") {
       let newTask = gatherTaskData();
+      clearInputData();
       let pop = document.querySelector(".addTaskDiv");
       pop.style.display = "none";
 
     }
   })
 };
+const clearInputData = () => {
+  const description = document.querySelector(".descriptionInput");
+  const title = document.querySelector(".titleInput")
+  description.value = "";
+  title.value = "";
+}
 
 const gatherTaskData = () => {
   let title = document.querySelector(".titleInput");
@@ -35,10 +44,7 @@ const gatherTaskData = () => {
 
 }
 
-let searchArray = (allProjects, category) => {
-let result = allProjects.findIndex(x => x.projectName === category);
-return result
-}
+
 
 const pushTasksToBoard = () => {
   const project = document.querySelector(".taskHeader");
@@ -66,7 +72,10 @@ const pushAllTasks = () => {
   remove();
 };
 
-
+let searchArray = (allProjects, category) => {
+let result = allProjects.findIndex(x => x.projectName === category);
+return result
+}
 
 const searchTask = (array, item) => {
   let result = array.findIndex(x => x.id === Number(item));
@@ -269,7 +278,31 @@ const createTask = (title, description, dueDate, iD) => {
   bin.id = iD
 
   taskTitle.textContent = title;
-  taskDate.textContent = dueDate;
+
+  const updateDate = (dueDate) => {
+    let date = parseISO(dueDate)
+    const result = differenceInCalendarDays(
+      date,
+      new Date()
+
+    )
+    return result
+
+  }
+  const updatedDate = updateDate(dueDate)
+  const updateMessage = (updatedDate) => {
+    console.log(updatedDate)
+    if (updatedDate === 0){
+      let message = ("Due Today");
+      return message
+    } else {
+      let message = ("Due in " + updatedDate + " days")
+      return message
+    }
+    return message
+  }
+
+  taskDate.textContent = updateMessage(updatedDate)
   bin.textContent = "X"
 
   newTask.appendChild(checkBox);
@@ -290,4 +323,5 @@ export {
   clearTasks,
   pushAllTasks,
   checkItems,
+  searchArray,
 }

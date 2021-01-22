@@ -1,24 +1,46 @@
-import {clearTasks, pushAllTasks, checkItems,} from "./taskCreator.js"
+import {clearTasks, pushAllTasks, checkItems, searchArray} from "./taskCreator.js"
 
 let allProjects = [];
+
+const pushProjects = () => {
+  allProjects.forEach(project => {
+  const name = project.projectName
+  createProject(name);
+})
+addRemoveToX();
+
+};
+
+
 
 let createProject = (name) => {
   const newProject = document.createElement("div");
   newProject.classList.add("newProject");
   const projectTitle = document.createElement("button");
+  // const buttonDiv = document.createElement("div");
+  // buttonDiv.classList.add("removeProjectDiv")
+  const button = document.createElement("P");
+  button.classList.add("removeProject")
+  button.textContent = "X"
+  button.id = name
   projectTitle.classList.add("projectTitle");
   projectTitle.textContent = name;
 
   const projectList = document.querySelector(".projectNames")
 
+  // buttonDiv.appendChild(button);
   newProject.appendChild(projectTitle);
+  newProject.appendChild(button);
   projectList.appendChild(newProject);
-  setActiveOnInit(projectTitle);
-  changeTaskHeader();
+
+  return projectTitle
+
 
 };
 
-let createArray = (n) => {
+
+
+let createTaskArray = (n) => {
   return {
     projectName: n,
     tasks: [],
@@ -31,9 +53,12 @@ let addEtoAdd = () => {
   let input = document.querySelector(".projectInput")
   document.body.addEventListener("click", function(e) {
     if (e.target.className === "projectSubmit addButton") {
-      createProject(input.value);
-      let newArray = createArray(input.value);
+      let pTitle = createProject(input.value);
+      setActiveOnInit(pTitle);
+      let newArray = createTaskArray(input.value);
       allProjects.push(newArray);
+      changeTaskHeader();
+      addRemoveToX();
       addEtoProjects();
       clearTasks();
       let pop = document.querySelector(".addProjectDiv");
@@ -62,6 +87,54 @@ let setActiveTask = (e) => {
   }
 };
 
+
+
+const addRemoveToX = () => {
+  let remove = document.querySelectorAll(".removeProject");
+  remove.forEach(x => {
+    x.addEventListener("click", event => {
+      let item = event.target.id
+      // console.log(item)
+      removeProject(item);
+
+        console.log(allProjects);
+
+      // console.log(newArray);
+
+        // allProjects.push(newArray);
+      // clearProjects();
+      // pushProjects();
+      // console.log(allProjects)
+      // addEtoProjects();
+
+    })
+  })
+
+};
+const clearProjects = () => {
+const projectNames = document.querySelector(".projectNames")
+projectNames.innerHTML = ""
+// while (projectNames.firstChild) {
+// projectNames.removeChild(projectNames.lastChild);
+// }
+// console.log("clear working")
+};
+
+
+const removeProject = (item) => {
+const itemId = item;
+const index = searchArray(allProjects, itemId);
+console.log("index is " + index)
+const newArray = spliceProject(index);
+// return newArray
+
+}
+const spliceProject = (index) => {
+  // const x = index - 1
+  const splicedArray = allProjects.splice(index, 1);
+  return splicedArray
+};
+
 let changeTaskHeader = () => {
   const taskHeader = document.querySelector(".taskHeader");
   const activeProject = document.querySelector(".active");
@@ -86,7 +159,6 @@ let addEtoProjects = () => {
       checkItems();
     }
   })
-
 };
 
 let closePopUp = () => {

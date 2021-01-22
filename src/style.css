@@ -78,11 +78,15 @@ p {
 }
 
 .newProject {
+  display: flex;
   margin: 2% 0;
   width: 100%;
   height: 100%;
   text-align: center;
+  justify-content: center;
+  align-items: center;
 }
+
 
 .addProjectDiv {
   display: none;
@@ -281,8 +285,6 @@ font-weight: bold;
   width: 80%;
   height: 10%;
 }
-
-
 
 
 /* WARNIN */
