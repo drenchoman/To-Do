@@ -1,4 +1,4 @@
-import {allProjects} from "./projectCreator.js";
+import {allProjects, saveAllProjects} from "./projectCreator.js";
 import { differenceInCalendarDays } from 'date-fns'
 import { parseISO } from 'date-fns'
 
@@ -64,11 +64,13 @@ const pushTasksToBoard = () => {
     createTask(taskData, taskDescription, taskDate, taskId,)
     console.log(allProjects[currentProject].tasks)
   } )
+  saveAllProjects();
 };
 
 const pushAllTasks = () => {
   clearTasks();
   pushTasksToBoard();
+  saveAllProjects();
   remove();
 };
 
@@ -324,4 +326,6 @@ export {
   pushAllTasks,
   checkItems,
   searchArray,
+  pushTasksToBoard,
+  remove,
 }

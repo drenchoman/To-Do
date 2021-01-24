@@ -1,7 +1,8 @@
 import "./style.css";
 import buildElements from "./modules/createDom.js"
-import {projectPopUp,} from "./modules/projectCreator.js"
+import {projectPopUp, allProjects, getStoredProjects, initProjects} from "./modules/projectCreator.js"
 import {buildTaskList, addTaskPopUp} from "./modules/taskCreator.js"
+
 
 
 const addEventListeners = () => {
@@ -16,6 +17,8 @@ const addEventListeners = () => {
 
 };
 
+allProjects = getStoredProjects();
 
 buildElements();
 addEventListeners();
+initProjects();

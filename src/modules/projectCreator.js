@@ -1,6 +1,16 @@
-import {clearTasks, pushAllTasks, checkItems, searchArray} from "./taskCreator.js"
+import {clearTasks, pushAllTasks, checkItems, searchArray, pushTasksToBoard, remove} from "./taskCreator.js"
+
+
 
 let allProjects = [];
+
+const storedProjects = JSON.parse(localStorage.getItem("projects"));
+
+const getStoredProjects = () => {
+  const allProjects = storedProjects
+  return allProjects
+}
+
 
 const pushProjects = () => {
   allProjects.forEach(project => {
@@ -8,9 +18,29 @@ const pushProjects = () => {
   createProject(name);
 })
 addRemoveToX();
+setActiveOnInit()
+changeTaskHeader();
+saveAllProjects();
+// console.log(allProjects)
 
 };
 
+// const addListeners = () => {
+//
+// }
+
+const initProjects = () => {
+  allProjects.forEach(project => {
+    const name = project.projectName
+    createProject(name);
+  })
+  setActiveOnInit();
+  addEtoProjects();
+  changeTaskHeader();
+  addRemoveToX();
+  pushTasksToBoard();
+  remove();
+}
 
 
 let createProject = (name) => {
@@ -53,40 +83,45 @@ let addEtoAdd = () => {
   let input = document.querySelector(".projectInput")
   document.body.addEventListener("click", function(e) {
     if (e.target.className === "projectSubmit addButton") {
-      let pTitle = createProject(input.value);
-      setActiveOnInit(pTitle);
+      let header = input.value
+      // let pTitle = createProject(input.value);
+      // setActiveOnInit(pTitle);
+      // console.log(header);
       let newArray = createTaskArray(input.value);
       allProjects.push(newArray);
-      changeTaskHeader();
-      addRemoveToX();
+      // changeTaskHeader();
+      clearProjects();
+      pushProjects();
+        // setActiveOnInit(header)
+      // addRemoveToX();
       addEtoProjects();
       clearTasks();
       let pop = document.querySelector(".addProjectDiv");
       pop.style.display = "none";
-      console.log(allProjects)
+      // console.log(allProjects)
     }
   })
 };
 
-let setActiveOnInit = (projectTitle) => {
+let setActiveOnInit = () => {
+const projectDiv = document.querySelector(".projectNames")
+const lastDiv = projectDiv.lastElementChild
+const firstChild = lastDiv.firstChild
 const activeBtn = document.querySelector(".active");
-if (activeBtn) {
-  activeBtn.classList.remove("active");
-  projectTitle.classList.add("active");
-} else {
-  projectTitle.classList.add("active");
-}
+firstChild.classList.add("active")
+
 };
+
 // Change Active on click
 let setActiveTask = (e) => {
   const activeBtn = document.querySelector(".active");
   if (activeBtn) {
     activeBtn.classList.remove("active");
+    e.target.classList.add("active")
   } else {
     e.target.classList.add("active")
   }
 };
-
 
 
 const addRemoveToX = () => {
@@ -96,16 +131,9 @@ const addRemoveToX = () => {
       let item = event.target.id
       // console.log(item)
       removeProject(item);
-
-        console.log(allProjects);
-
-      // console.log(newArray);
-
-        // allProjects.push(newArray);
-      // clearProjects();
-      // pushProjects();
-      // console.log(allProjects)
-      // addEtoProjects();
+      clearProjects();
+      pushProjects();
+      addEtoProjects();
 
     })
   })
@@ -114,23 +142,24 @@ const addRemoveToX = () => {
 const clearProjects = () => {
 const projectNames = document.querySelector(".projectNames")
 projectNames.innerHTML = ""
-// while (projectNames.firstChild) {
-// projectNames.removeChild(projectNames.lastChild);
-// }
-// console.log("clear working")
+};
+
+
+const saveAllProjects = () => {
+localStorage.setItem("projects", JSON.stringify(allProjects));
+// console.log(localStorage)
 };
 
 
 const removeProject = (item) => {
 const itemId = item;
 const index = searchArray(allProjects, itemId);
-console.log("index is " + index)
+// console.log("index is " + index)
 const newArray = spliceProject(index);
 // return newArray
 
 }
 const spliceProject = (index) => {
-  // const x = index - 1
   const splicedArray = allProjects.splice(index, 1);
   return splicedArray
 };
@@ -153,7 +182,7 @@ let addEtoProjects = () => {
   document.body.addEventListener("click", function(e) {
     if (e.target.className === "projectTitle") {
       setActiveTask(e);
-      console.log(e.target.textContent);
+      // console.log(e.target.textContent);
       updateTaskHeader(e);
       pushAllTasks();
       checkItems();
@@ -216,6 +245,9 @@ let projectPopUp = () => {
 
 export {
   projectPopUp,
-  allProjects
+  allProjects,
+  getStoredProjects,
+  initProjects,
+  saveAllProjects,
 
 };
