@@ -1,3 +1,4 @@
+import {makePrioSelectable} from "./taskCreator.js"
 
   const addNavBar = () => {
     let taskHeaderDiv = document.createElement("div")

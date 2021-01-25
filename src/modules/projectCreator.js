@@ -1,4 +1,4 @@
-import {clearTasks, pushAllTasks, checkItems, searchArray, pushTasksToBoard, remove} from "./taskCreator.js"
+import {clearTasks, pushAllTasks, checkItems, searchArray, pushTasksToBoard, remove, editListener} from "./taskCreator.js"
 
 
 
@@ -40,6 +40,7 @@ const initProjects = () => {
   addRemoveToX();
   pushTasksToBoard();
   remove();
+  editListener();
 }
 
 
