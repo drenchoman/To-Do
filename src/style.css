@@ -1,7 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Karla&family=Roboto+Slab:wght@300;400&display=swap');
+
 body {
   margin: 0;
-  background:#6930c3;
+  background: #6930c3;
 }
 
 h2 {
@@ -11,13 +12,13 @@ h2 {
 
 h3 {
   font-family: 'Karla', sans-serif;
-
 }
 
 p {
   font-family: 'Roboto Slab', serif;
   font-size: 1em;
 }
+
 .nav {
   display: flex;
   flex-direction: row;
@@ -31,9 +32,9 @@ p {
 .toDoTitle {
   color: white;
   padding-left: 5%;
-
 }
-.main{
+
+.main {
   display: flex;
 }
 
@@ -42,61 +43,66 @@ p {
   flex-direction: column;
   width: 20%;
   height: 100vh;
-  background: #64dfdf;
+  background: #09015f;
   /* border: 1px solid #80ffdb;
   border-radius: 30px 30px 0 0; */
   /* background: rgba(37, 37, 37, 0.6); */
   align-items: center;
-
 }
 
-
-
-
 .projectNames {
-  /* background: rgba(255, 87, 127, 0.5); */
   width: 100%;
   margin-top: 2%;
   margin-bottom: 2%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  justify-content: space-between;
+  align-items:flex-start;
 }
+
+.projectButton {
+  margin-bottom: 4%;
+  margin-top: 1.5%;
+}
+
 .active {
-  background: rgba(255, 87, 127, 1)
+  background: #af0069;
+  color: #FFF8DC;
 }
 
 /* .projectNames:hover{
   background: rgba(255, 87, 127, 1);
 } */
-
 .projectTitle {
-  width: 80%;
+  width: 12vw;
   height: 10vh;
   font-size: 1.5em;
+  border: 2px solid black;
+}
+
+.projectTitle:hover {
+  background-color: #af0069;
+  color: #FFF8DC;
+
 }
 
 .newProject {
   display: flex;
+  flex-direction: row;
   margin: 2% 0;
+  margin-left: 4%;
   width: 100%;
   height: 100%;
   text-align: center;
-  justify-content: center;
-  align-items: center;
+  justify-content: space-evenly;
+  align-items: flex-start;
 }
 
+/* .newProject:hover{
+  background-color: #af0069;
+  pointer: cursor;
+} */
 
-.addProjectDiv {
-  display: none;
-  position: fixed;
-  left: 16.7%;
-  width: 30vw;
-  z-index: 1;
-  background-color: #ff577f;
-
-}
 
 .projectContent {
   display: flex;
@@ -104,27 +110,28 @@ p {
   margin: 15% auto;
   justify-content: space-between;
   align-items: center;
-
 }
 
-.projectInput{
+.projectInput {
   margin-bottom: 5%;
   font-size: 25px;
   width: 50%;
 }
 
-
-
 .projectSubmit {
-  width:5vw;
-  height:5vh;
+  width: 5vw;
+  height: 5vh;
   align-self: center;
-
 }
 
-.projectHeader{
+.projectHeader {
   font-family: 'Roboto Slab', serif;
-  font-size: 2em;
+  font-size: 3em;
+  color: #55b3b1;
+  align-self: flex-start;
+  margin-left: 11%;
+  margin-bottom: 6%;
+  margin-top: 1%;
 
 }
 
@@ -134,7 +141,6 @@ p {
   position: fixed;
   top: 10%;
   left: 18%;
-
 }
 
 .closeButton:hover,
@@ -158,38 +164,39 @@ p {
   flex-direction: row;
   width: 100%;
   height: 10vh;
-  background-color: #64dfdf;
+  background-color: #09015f;
   justify-content: center;
   align-items: center;
 }
 
 .taskHeader {
   margin-right: 2%;
-
-}
-.addButton{
-width: 100px;
-height: 30px;
-border: 1px solid #252525;
-text-align: center;
-background-color: #64dfdf;
-font-family: 'Karla', sans-serif;
-font-weight: bold;
+  color: #FFF8DC;
 }
 
+.addButton {
+  width: 100px;
+  height: 30px;
+  border: 1px solid #252525;
+  text-align: center;
+  background-color: #55b3b1;
+  font-family: 'Karla', sans-serif;
+  font-weight: bold;
+}
 
-.addTaskButton{
+.addTaskButton {
   margin-top: 10px;
 }
 
 .addButton:hover,
-.addButton:focus{
+.addButton:focus {
   background-color: #252525;
   cursor: pointer;
-  color: white;
+  color: #FFF8DC;
 }
+
 /* .taskDiv{}; */
-.modalDiv{
+.modalDiv {
   display: none;
   width: 100%;
   height: 100%;
@@ -199,36 +206,42 @@ font-weight: bold;
   /* right: 15%; */
   left: 0;
   top: 0;
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4);
+  background-color: rgb(0, 0, 0);
+  /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4);
   overflow-y: auto;
 }
-.editDiv{
+
+.editDiv {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #fefefe;
+  background-color: #af0069;
   width: 25%;
   margin: 4% auto;
 }
-.editDiv > h3 {
-  font-family:'Karla', sans-serif;
+
+.editDiv>h3 {
+  font-family: 'Karla', sans-serif;
   font-size: 2.2em;
   margin: 2.5% 0;
-};
+  color: #FFF8DC;;
+}
 
-.editDiv > P {
+;
+
+.editDiv>P {
   left: 38.5%;
   top: 8%;
 }
 
-.editCloseButton{
-  left:38.5%;
+.editCloseButton {
+  left: 38.5%;
   top: 8%;
 }
-/* Task Creator Pop up list */
 
+/* Task Creator Pop up list */
 .addTaskDiv {
   display: none;
   width: 100%;
@@ -239,95 +252,127 @@ font-weight: bold;
   /* right: 15%; */
   left: 0;
   top: 0;
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4);
+  background-color: rgb(0, 0, 0);
+  /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4);
   overflow-y: auto;
 }
 
-.taskContent{
+.taskContent {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #fefefe;
+  background-color: #af0069;
   width: 25%;
   margin: 4% auto;
 }
-.taskContent > P {
-  left: 38.5%;
+
+.taskContent>P {
+  left: 38%;
   top: 8%;
 }
 
-.taskContent > h3 {
-  font-family:'Karla', sans-serif;
+.taskContent>h3 {
+  font-family: 'Karla', sans-serif;
   font-size: 2.2em;
   margin: 2.5% 0;
-
+  color: #FFF8DC;
 }
-.headerTask{
+
+.headerTask {
   margin: 10px 0;
+  color: #FFF8DC;
+  font-weight: bold;
 }
 
-
-
-
-.checkBox {
+/* .checkBox {
   width: 5%;
-}
+} */
+
 .taskTitle {
-  width: 20%;
+  margin-left: 5%;
+  width: 25%;
+  color: #FFF8DC;
 }
+
 .description {
   width: 30%;
+  color: #FFF8DC;
 }
+
 .taskDate {
   width: 15%;
+  color: #FFF8DC;
 }
+
 .bin {
   width: 5%;
 }
+.bin:hover {
+  transform: rotate(5deg) scale(1.2);
+  cursor: pointer;
+}
 
-.submit{
+.submit {
   margin-top: 5%;
   margin-bottom: 5%;
 }
 
-
 /* New Task */
-
-.newTask{
+.newTask {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin: 2% auto;
+  margin: 1% auto;
   align-items: center;
-  border: 1px solid black;
+  border: 2px solid black;
   width: 80%;
   height: 10%;
+  background: #09015f
 }
 
-/* Priority Div */
-.prioDiv{
+.contentTaskDiv > div:first-of-type{
+  margin-top: 2%;
+}
+
+.prioDivE {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
   width: 50%;
 }
-.prioGreen{
-  width: 50px;
-  height: 50px;
+
+.submitE {
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
+
+/* Priority Div */
+.prioDiv {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  width: 50%;
+}
+
+.prioGreen {
+  width: 30%;
+  height: 8vh;
   background-color: green;
   color: green;
 }
-.prioYellow{
-  width: 50px;
-  height: 50px;
+
+.prioYellow {
+  width: 30%;
+  height: 8vh;
   background-color: yellow;
   color: yellow;
 }
+
 .prioRed {
-  width: 50px;
-  height: 50px;
+  width: 30%;
+  height: 8vh;
   background-color: red;
   color: red;
 }
@@ -337,31 +382,59 @@ font-weight: bold;
   height: 80%;
   border-radius: 100%;
   background-color: red;
-
-
+  border: 2px solid black;
 }
+
 .yellow {
   width: 5%;
   height: 80%;
   border-radius: 100%;
   background-color: yellow;
-
+  border: 2px solid black;
 }
+
 .green {
   width: 5%;
   height: 80%;
   border-radius: 100%;
   background-color: green;
+  border: 2px solid black;
 }
 
 .selected {
   border: 2px solid black;
 }
 
+.selectedE {
+  border: 2px solid black;
+}
+
 .editClicker:hover,
-.editClicker:focus{
-  transform: rotate(-20deg);
-  transform: scale(1.2);
+.editClicker:focus {
+  transform: rotate(20deg) scale(1.2);
+
   cursor: pointer;
   color: white;
+}
+
+.crossed {
+  text-decoration: line-through;
+}
+
+.pDiv {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.removeProject:hover{
+  transform: rotate(20deg) scale(1.2);
+  cursor: pointer;
+}
+
+.pInput {
+  width: 88%;
+  border: 2px solid black;
+  margin-bottom: 4%;
 }
