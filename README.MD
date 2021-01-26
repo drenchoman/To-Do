@@ -12,10 +12,14 @@
 * JavaScript
 * HTML
 Modules used:
-date-fns
+* date-fns
 
 ## License
 This project is licensed under the MIT License
+
+## Future updates
+> Add checkbox to task
+> Optimise for mobile- add media queries
 
 ## Linkedin
 [Let's Connect](https://www.linkedin.com/in/oscar-harron-87228a164/)
