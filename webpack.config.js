@@ -2,6 +2,9 @@ const path = require('path');
 
 module.exports = {
   entry: './src/index.js',
+        './src/modules/createDom.js',
+        '/src/modules/projectCreator.js',
+        '/src/modules/taskCreator.js'
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist'),
