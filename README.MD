@@ -9,6 +9,10 @@
 
 ## Built With
 * [Webpack](https://webpack.js.org/)
+* JavaScript
+* HTML
+Modules used:
+date-fns
 
 ## License
 This project is licensed under the MIT License
