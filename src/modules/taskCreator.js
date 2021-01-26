@@ -61,7 +61,7 @@ const gatherTaskData = () => {
   allProjects[project].tasks.push(newTask);
   clearTasks();
   pushTasksToBoard();
-  checkItems();
+  // checkItems();
   remove();
   editListener();
   closeEdit();
